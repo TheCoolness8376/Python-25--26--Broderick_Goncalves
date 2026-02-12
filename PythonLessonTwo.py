@@ -14,7 +14,7 @@ print(f"Hello, My name is {name} and I'm {age} years old.")
 # it replaces with the String or int when printed
 
 # match day: # <---- match is the pythonn switch
-#     case 1:
+    # case 1:
 #         print("Monday")
 #     case _: # <---- _ is the default of python
 #         print("Invalid day")
@@ -25,10 +25,10 @@ print(f"Hello, My name is {name} and I'm {age} years old.")
 name = input("What is your name? ")
 age = input("How old are you? ")
 if age <= 17:
-    print("So your name is " + name + " and you're " + age + " years old, or a minor")
+    print(f"So your name is {name} and you're {age} years old, or a minor")
 elif age <= 20 and age >= 18:
-    print("So your name is " + name + " and you're " + age + " years old, or a young adult")
+    print(f"So your name is {name} and you're {age} years old, or a young adult")
 elif age >= 21:
-    print("So your name is " + name + " and you're " + age + " years old, or an adult")
+    print(f"So your name is {name} and you're {age} years old, or an adult")
 else:
     print("Invalid Response")

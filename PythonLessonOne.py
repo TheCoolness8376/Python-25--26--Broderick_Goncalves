@@ -35,5 +35,5 @@ x = 5
 y = 2
 print(x ** y) # prints 25
 
-# ---------- Practice Activity 2 ---------- #
+# ---------- Practice Activity 3 ---------- #
 speed3 = 100
