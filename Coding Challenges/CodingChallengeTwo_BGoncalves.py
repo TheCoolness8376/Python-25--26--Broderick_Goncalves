@@ -6,7 +6,8 @@ else:
     print("Your word is a Short Word")
 print("Your word is: " + user_input.lower())
 print("Your word is: " + user_input.upper())
-print("The length of your word is: " + len(user_input))
+wordLength = len(user_input)
+print(f"The length of your word is: {wordLength}")
 
 # ---------- Q & A ---------- #
 # 1. len() returns the length of the word thats inputted
