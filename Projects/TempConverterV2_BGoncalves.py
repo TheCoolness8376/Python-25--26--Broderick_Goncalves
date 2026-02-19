@@ -23,32 +23,30 @@ while running:
         print("Invalid: Kelvin cannot be negative.")
         continue
 
-    # Convert input to Celsius first
-    if from_unit == "C":
-        celsius = temp
-    elif from_unit == "F":
-        celsius = (temp - 32) * 9/5 # Celsius to Fahrenheit
-    elif from_unit == "K":
-        celsius = temp * 273.15 # Celsius to Kelvin
+    # Convert to Celsius first
+    def Celsius_to_Fahrenheit(temp):
+        return (temp * 9/5) + 32
+    
+    def Celsius_to_Kelvin(temp):
+        return temp + 273.15
+    
+    # Add Fahrenheit_to_Kelvin
+    # Add Fahrenheit_to_Celsius
 
-    # if from_unit == "F":
-    #     fahrenheit = temp
-    # elif from_unit == "C":
-    #     fahrenheit = (temp - 32) * 5/9 # Fahrenheit to Celsius
-    # elif from_unit == "K":
-    #     fahrenheit = (temp - 32) * 5/9 + 273.15 # Fahrenheit to Kelvin
+    # Add Kelvin_to_Fahrenheit
+    # Add Kelvin_to_Celsius
     
     # Celsius to target unit
-    if to_unit == "C":
-        result = celsius
-    elif to_unit == "F":
-        result = (celsius * 9/5) + 32
-    elif to_unit == "K":
-        result = celsius * 273.15
+    double = 0
 
-    print(f"Result: {result:.2f}{to_unit}")
+    if (from_unit) == "C" and to_unit == "F":
+        result = Celsius_to_Fahrenheit(temp)
+
+    if (from_unit) == "C" and to_unit == "K":
+        result = Celsius_to_Kelvin(temp)
+
+    print(f"Result:{result:.2f}{to_unit}")
 
     choice = input("Convert again? (yes/no): ").lower()
     if choice == "no":
         running = False
-    
