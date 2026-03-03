@@ -1,5 +1,5 @@
 # Brody Goncalves
-#  /  / 26
+# 3 / 8 / 26
 # v1
 # Copilot
 # Comments:
@@ -47,30 +47,87 @@ def loadHighscore():
         print(f"Error loading highscore: {e}", file=sys.stderr)
     return highscore
 
-print("\n\nWelcome to Rock, Paper, Scissors! (You can quit at ant time with 0)")
+print("\n\nWelcome to Rock, Paper, Scissors! (You can quit at any time with 0)")
 
-while True:
-    randNum = random.randint(0, 2)
-    try:
-        roPapSci = input("\nRock [1], Paper [2], Scissors [3], or Quit [0]? ")
-    except:
-        print("Invalid input. Please enter a number (0-3).")
-        continue
+try:
+    while True:
+        randNum = random.randint(0, 2)
+        try:
+            roPapSci = int(input("\nRock [1], Paper [2], Scissors [3], or Quit [0]? "))
+        except:
+            print("Invalid input. Please enter a number (0-3).")
+            continue
 
-    if (roPapSci == 1):
-        match (randNum):
-            case 0:
-                print("draw \nTotal points = " + points + "\nCurrent Highscore: " + loadHighscore())
-                break
-            case 1:
-                print("Paper beats rock! You lose. Winstreak is now ded \nYour score was " + points + "\nResetting score")
-                points = 0
-                break
-            case 2:
-                print("Rock beats Scissors! You win!")
-                points +1
+        if (roPapSci == 1):
+            match (randNum):
+                case 0:
+                    print(f"draw \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")
+                case 1:
+                    print(f"Paper beats rock! You lose. Winstreak is now ded \nYour score was {points} \nResetting score")
+                    points = 0               
+                case 2:
+                    print("Rock beats Scissors! You win!")
+                    points += 1
+                    stored = loadHighscore()
+                    if (points > stored):
+                        saveHighscore(points)
+                    print(f"You win! +1 point! \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")
+                    
+        if (roPapSci == 2):
+            match (randNum):
+                case 0:
+                    print("Paper beats rock! You win!")
+                    points += 1
+                    stored = loadHighscore()
+                    if (points > stored):
+                        saveHighscore(points)
+                    print(f"You win! +1 point!\nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")               
+                case 1:
+                    print(f"draw \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")              
+                case 2:
+                    print(f"Scissors beats paper! You lose. Winstreak is now ded \nYour score was {points} \nResetting score")
+                    points = 0
+                    
+        if (roPapSci == 3):
+            match (randNum):
+                case 0:
+                    print("Rock beats Scissors! You lose. Winstreak is now ded")
+                    print(f"Your score was {points} \nResetting score")
+                    points = 0             
+                case 1:
+                    print("Scissors beats paper! You win!")
+                    points += 1
+                    stored = loadHighscore()
+                    if (points > stored):
+                        saveHighscore(points)
+                    print(f"You win! +1 point!\nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")           
+                case 2:
+                    print(f"draw \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")
+                    
+        elif (roPapSci == 0):
+            print("Quitting. Goodbye!")
+            # save current points as highscore if it's greater than stored
+            try:
                 stored = loadHighscore()
-                if (points > stored):
+                if points > stored:
                     saveHighscore(points)
-                print("You win! +1 point! \nTotal points = " + points + "\nCurrent Highscore: " + loadHighscore())
-                break
+            except Exception:
+                pass
+            sys.exit(0)
+except (KeyboardInterrupt, SystemExit):
+    # ensure highscore is saved on Ctrl-C or sys.exit
+    try:
+        stored = loadHighscore()
+        if points > stored:
+            saveHighscore(points)
+    except Exception:
+        pass
+    raise
+finally:
+    # final safety save for any other unexpected exit
+    try:
+        stored = loadHighscore()
+        if points > stored:
+            saveHighscore(points)
+    except Exception:
+        pass
