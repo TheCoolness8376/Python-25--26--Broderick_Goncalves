@@ -47,25 +47,25 @@ def loadHighscore():
         print(f"Error loading highscore: {e}", file=sys.stderr)
     return highscore
 
-print("\n\nWelcome to Rock, Paper, Scissors! (You can quit at any time with 0)")
+print("\n\nWelcome to Rock, Paper, Scissors! (You can quit at any time with 0)") # Intro
 
 try:
     while True:
-        randNum = random.randint(0, 2)
+        randNum = random.randint(0, 2) # Computer choosing Rock, Paper, or Scissors
         try:
-            roPapSci = int(input("\nRock [1], Paper [2], Scissors [3], or Quit [0]? "))
+            roPapSci = int(input("\nRock [1], Paper [2], Scissors [3], or Quit [0]? ")) # User choosing Rock, Paper, or Scissors
         except:
             print("Invalid input. Please enter a number (0-3).")
             continue
 
-        if (roPapSci == 1):
+        if (roPapSci == 1): # User selects Rock
             match (randNum):
-                case 0:
+                case 0: # Computer chooses Rock
                     print(f"draw \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")
-                case 1:
+                case 1: # Computer Chooses Paper
                     print(f"Paper beats rock! You lose. Winstreak is now ded \nYour score was {points} \nResetting score")
                     points = 0               
-                case 2:
+                case 2: # Computer Chooses Scissors
                     print("Rock beats Scissors! You win!")
                     points += 1
                     stored = loadHighscore()
@@ -73,38 +73,38 @@ try:
                         saveHighscore(points)
                     print(f"You win! +1 point! \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")
                     
-        if (roPapSci == 2):
+        if (roPapSci == 2): # User selects Paper
             match (randNum):
-                case 0:
+                case 0: # Computer chooses Rock
                     print("Paper beats rock! You win!")
                     points += 1
                     stored = loadHighscore()
                     if (points > stored):
                         saveHighscore(points)
                     print(f"You win! +1 point!\nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")               
-                case 1:
+                case 1: # Computer Chooses Paper
                     print(f"draw \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")              
-                case 2:
+                case 2: # Computer Chooses Scissors
                     print(f"Scissors beats paper! You lose. Winstreak is now ded \nYour score was {points} \nResetting score")
                     points = 0
                     
-        if (roPapSci == 3):
+        if (roPapSci == 3): # User selects Scissors
             match (randNum):
-                case 0:
+                case 0: # Computer chooses Rock
                     print("Rock beats Scissors! You lose. Winstreak is now ded")
                     print(f"Your score was {points} \nResetting score")
                     points = 0             
-                case 1:
+                case 1: # Computer Chooses Paper
                     print("Scissors beats paper! You win!")
                     points += 1
                     stored = loadHighscore()
                     if (points > stored):
                         saveHighscore(points)
                     print(f"You win! +1 point!\nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")           
-                case 2:
+                case 2: # Computer Chooses Scissors
                     print(f"draw \nTotal points = {points} \nCurrent Highscore: {loadHighscore()}")
                     
-        elif (roPapSci == 0):
+        elif (roPapSci == 0): # User selects quit
             print("Quitting. Goodbye!")
             # save current points as highscore if it's greater than stored
             try:
